@@ -1,0 +1,3 @@
+import React,{useState,useEffect,useCallback}from 'react';import {useParams}from 'react-router-dom';import PostCard from '../components/PostCard';import CommentSection from '../components/CommentSection';
+function PostDetailPage(){const{postId}=useParams();const[post,setPost]=useState(null);const fetchPost=useCallback(async()=>{try{const r=await fetch(`/api/posts/${postId}`);if(r.ok){setPost(await r.json());}else{setPost(null);}}catch(e){}},[postId]);useEffect(()=>{fetchPost();},[fetchPost]);if(!post){return <div className="text-center">Loading...</div>;}return(<div><PostCard post={post} isDetailView={true} onUpdate={fetchPost}/><CommentSection postId={postId}/></div>);}
+export default PostDetailPage;

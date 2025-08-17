@@ -1,0 +1,3 @@
+import React from 'react'; import { Routes, Route } from 'react-router-dom'; import Header from './components/Header'; import HomePage from './pages/HomePage'; import CommunityPage from './pages/CommunityPage'; import PostDetailPage from './pages/PostDetailPage'; import UserProfilePage from './pages/UserProfilePage';
+function App(){return(<div className="min-h-screen text-white font-sans"><Header/><main className="container mx-auto p-4 max-w-5xl"><Routes><Route path="/" element={<HomePage/>}/><Route path="/c/:communityName" element={<CommunityPage/>}/><Route path="/c/:communityName/posts/:postId" element={<PostDetailPage/>}/><Route path="/u/:username" element={<UserProfilePage/>}/></Routes></main></div>);}
+export default App;

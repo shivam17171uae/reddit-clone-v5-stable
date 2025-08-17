@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    container_name: reddit-clone-v5-app
+    restart: unless-stopped
+    ports: ["8080:3001"]
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/mydatabase
+      - JWT_SECRET=your-super-secret-key-that-should-be-more-secure
+    volumes:
+      - uploads_data_v5:/app/uploads
+    depends_on: [db]
+  db:
+    image: postgres:15-alpine
+    container_name: reddit-clone-v5-db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=mydatabase
+    volumes: [postgres_data_v5:/var/lib/postgresql/data]
+volumes:
+  postgres_data_v5:
+  uploads_data_v5:
